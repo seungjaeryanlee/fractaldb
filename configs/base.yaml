@@ -1,0 +1,2 @@
+model:
+  name: torchvision.models.resnet50
