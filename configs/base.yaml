@@ -1,2 +1,5 @@
 model:
   name: torchvision.models.resnet50
+
+dataset:
+  name: torchvision.datasets.CIFAR10
