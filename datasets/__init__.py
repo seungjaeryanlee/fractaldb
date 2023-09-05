@@ -7,6 +7,7 @@ import torchvision
 logger = logging.getLogger(__name__)
 DATA_ROOT = "data/"
 
+
 def create_dataset(config):
     """Factory method for dataset."""
     os.makedirs(DATA_ROOT, exist_ok=True)
