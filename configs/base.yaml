@@ -4,6 +4,8 @@ model:
 dataset:
   name: torchvision.datasets.CIFAR10
 
-transform:
-  name: torchvision.transforms.CenterCrop
+transforms:
+- name: torchvision.transforms.CenterCrop
   size: 10
+- name: torchvision.transforms.RandomVerticalFlip
+  p: 0.5
