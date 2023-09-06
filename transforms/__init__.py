@@ -1,5 +1,4 @@
 import logging
-import os
 
 import torchvision
 
@@ -19,7 +18,7 @@ def create_transform(config):
     logger.error(f"{config.name} is not a supported transform.")
     raise ValueError(f"{config.name} is not a supported transform.")
 
+
 def create_transforms(config):
     """Factory method for multiple transforms."""
     return [create_transform(transform_config) for transform_config in config]
-        
