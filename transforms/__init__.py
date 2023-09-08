@@ -16,6 +16,7 @@ def create_transform(config):
 
     return transform
 
+
 def create_transforms(config):
     """Factory method for multiple transforms."""
     return [create_transform(transform_config) for transform_config in config]
