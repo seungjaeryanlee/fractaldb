@@ -1,7 +1,6 @@
 import logging
-import os
 
-import torchvision
+from utils import dict_without, get_class_from_str
 
 
 logger = logging.getLogger(__name__)
@@ -10,10 +9,10 @@ DATA_ROOT = "data/"
 
 def create_dataset(config):
     """Factory method for dataset."""
-    os.makedirs(DATA_ROOT, exist_ok=True)
+    try:
+        Class = get_class_from_str(config.name)
+    except:
+        logger.error(f"{config.name} is not a supported dataset.")
+        raise ValueError(f"{config.name} is not a supported dataset.")
 
-    if config.name == "torchvision.datasets.CIFAR10":
-        return torchvision.datasets.CIFAR10(DATA_ROOT, download=True)
-
-    logger.error(f"{config.name} is not a supported dataset.")
-    raise ValueError(f"{config.name} is not a supported dataset.")
+    return Class(root=DATA_ROOT, **dict_without(config, "name"))

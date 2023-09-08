@@ -1,27 +1,15 @@
-import importlib
 import logging
 
-from utils import dict_without
+from utils import dict_without, get_class_from_str
 
 logger = logging.getLogger(__name__)
 DATA_ROOT = "data/"
 
 
-def _get_class_from_str(module_class_str: str):
-    """Import and get Class from as string.
-
-    We assume config.name has format similar to module.submodule.Class
-    """
-    module_str, class_name = module_class_str.rsplit(".", 1)
-    Class = getattr(importlib.import_module(module_str), class_name)
-
-    return Class
-
-
 def create_transform(config):
     """Factory method for single transform."""
     try:
-        Class = _get_class_from_str(config.name)
+        Class = get_class_from_str(config.name)
     except:
         logger.error(f"{config.name} is not a supported transform.")
         raise ValueError(f"{config.name} is not a supported transform.")
