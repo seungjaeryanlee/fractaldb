@@ -11,7 +11,7 @@ def create_dataset(config):
     """Factory method for dataset."""
     try:
         Class = get_class_from_str(config.name)
-    except:
+    except Exception:
         logger.error(f"{config.name} is not a supported dataset.")
         raise ValueError(f"{config.name} is not a supported dataset.")
 

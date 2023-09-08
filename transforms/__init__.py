@@ -10,7 +10,7 @@ def create_transform(config):
     """Factory method for single transform."""
     try:
         Class = get_class_from_str(config.name)
-    except:
+    except Exception:
         logger.error(f"{config.name} is not a supported transform.")
         raise ValueError(f"{config.name} is not a supported transform.")
 

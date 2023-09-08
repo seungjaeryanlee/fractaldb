@@ -8,6 +8,7 @@ def dict_without(d, key):
 
     return new_d
 
+
 def get_class_from_str(module_class_str: str):
     """Import and get Class from as string.
 
