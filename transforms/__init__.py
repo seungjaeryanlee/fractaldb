@@ -1,21 +1,20 @@
 import logging
 
-from utils import dict_without, get_class_from_str
+from utils import create_class
 
 logger = logging.getLogger(__name__)
 DATA_ROOT = "data/"
 
 
 def create_transform(config):
-    """Factory method for single transform."""
+    """Factory method for a single transform."""
     try:
-        Class = get_class_from_str(config.name)
-    except Exception:
-        logger.error(f"{config.name} is not a supported transform.")
-        raise ValueError(f"{config.name} is not a supported transform.")
+        transform = create_class(**config)
+    except ValueError:
+        logger.error(f"{config.name} is not a supported model.")
+        raise ValueError(f"{config.name} is not a supported model.")
 
-    return Class(**dict_without(config, "name"))
-
+    return transform
 
 def create_transforms(config):
     """Factory method for multiple transforms."""

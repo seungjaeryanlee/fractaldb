@@ -18,3 +18,13 @@ def get_class_from_str(module_class_str: str):
     Class = getattr(importlib.import_module(module_str), class_name)
 
     return Class
+
+
+def create_class(**kwargs):
+    """Factory method for any Class."""
+    try:
+        Class = get_class_from_str(kwargs["name"])
+    except Exception:
+        raise ValueError(f"{kwargs['name']} is not a recognized class.")
+
+    return Class(**dict_without(kwargs, "name"))

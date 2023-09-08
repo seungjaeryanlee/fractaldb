@@ -3,6 +3,7 @@ model:
 
 dataset:
   name: torchvision.datasets.CIFAR10
+  root: data/
 
 transforms:
 - name: torchvision.transforms.CenterCrop
